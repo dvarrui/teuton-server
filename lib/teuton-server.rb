@@ -17,33 +17,47 @@ class TeutonServer
     return param[:port]
   end
 
-  def start_service(port, state='/tmp/running')
-    system("touch #{state}")
+  def start_service(port)
     server = TCPServer.open(port)    # Socket to listen on port
+    accept_clients server
+  end
+
+  def accept_clients(server)
     show_server server
-    loop {
-      exit unless File.exists? state
-      client = server.accept        # Wait for a client to connect
-      respond_to_client client
-    }
+    begin
+      loop {
+        client = server.accept        # Wait for a client to connect
+        respond_to_client client
+      }
+    rescue SystemExit, Interrupt
+      puts "\n[ teuton-server ] Closing server..."
+      exit 0
+    end
   end
 
   def show_server(server)
-    puts "[teuton-server] Running..."
-    puts " └── #{server.addr}"
+    puts "[ teuton-server ] Running... (CTRL+C to exit)"
+    puts "                  #{server.addr}"
   end
 
   def respond_to_client(client)
-    msg = "teuton play 01 => grade  0%"
-    puts "[#{Time.now}] #{msg}"
+    msg = "teuton play 01 => grade 0%"
+    puts "[#{timestamp}] #{msg}"
     show_client client
-    client.puts("[teuton-server] #{msg}")
+    client.puts("[ teuton-server ] #{msg}")
     client.close
   end
 
+  def timestamp
+    t = Time.now
+    m = "#{t.year}#{format('%02d',t.month)}#{format('%02d',t.day)}-" +
+        "#{format('%02d',t.hour)}#{format('%02d',t.min)}#{format('%02d',t.sec)}"
+    m
+  end
+
   def show_client(client)
-    puts " ├── ADDR     : #{client.addr}"
-    puts " └── PEERADDR : #{client.peeraddr}"
+    puts "   ├── ADDR     : #{client.addr}"
+    puts "   └── PEERADDR : #{client.peeraddr}"
   end
 
   def self.show_help
