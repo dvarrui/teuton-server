@@ -2,4 +2,4 @@
 
 require_relative 'lib/teuton-client'
 
-TeutonClient.run(ARGV.first || 'localhost')
+TeutonClient.run(ARGV)

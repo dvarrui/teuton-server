@@ -1,7 +1,23 @@
 require 'socket'                 # Get sockets from stdlib
 
 class TeutonServer
-  def run(port = 6174, state = '/tmp/.running')
+  def run(input)
+    port = read_input(input)
+    start_service(port)
+  end
+
+  def read_input(input)
+    param = {}
+    input.each do |line|
+      items = line.split(':')
+      param[items[0].to_sym] = items[1].to_s
+    end
+    param[:hostname] = param[:hostname] || 'localhost'
+    param[:port] = param[:port] || '6174'
+    return param[:port]
+  end
+
+  def start_service(port, state='/tmp/running')
     system("touch #{state}")
     server = TCPServer.open(port)    # Socket to listen on port
     show_server server
