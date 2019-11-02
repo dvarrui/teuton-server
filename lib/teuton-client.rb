@@ -2,20 +2,17 @@
 require 'socket'
 
 module TeutonClient
-  def self.run(input)
-    hostname, port = read_input(input)
+  def self.run(args)
+    show_help unless args.size == 1
+    hostname, port = read_input(args[0])
     connect_to_server(hostname, port)
   end
 
   def self.read_input(input)
-    param = {}
-    input.each do |line|
-      items = line.split(':')
-      param[items[0].to_sym] = items[1].to_s
-    end
-    param[:hostname] = param[:hostname] || 'localhost'
-    param[:port] = param[:port] || '6174'
-    return param[:hostname], param[:port]
+    items = input.split(':')
+    ip = (items[0].size > 0 ? items[0] : 'localhost')
+    port = (items[1].size > 0 ? items[1].to_i : 9000 )
+    return ip, port
   end
 
   def self.connect_to_server(hostname='localhost', port='6174')
@@ -34,12 +31,12 @@ module TeutonClient
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-client [help|version] [hostname:IP] [port:PORTNUMBER]"
+    puts "    teuton-client [help|version] [IP:port]"
     puts "Params:"
-    puts "    help, show this help"
-    puts "    version"
-    puts "    hostname"
-    puts "    port"
+    puts "    help    , show this help"
+    puts "    version , show current version"
+    puts "    IP      , Teuton server IP"
+    puts "    port    , Teuton server port number"
     exit 0
   end
 
