@@ -68,11 +68,13 @@ class TeutonServer
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-server [configfile|help|version]"
+    puts "    teuton-server [help|version] [hostname:IP] [port:PORTNUMBER]"
     puts "Params:"
-    puts "    configfile, YAML server configuration file"
     puts "    help, show this help"
     puts "    version"
+    puts "    hostname"
+    puts "    port"
+    puts "    configfile, YAML server configuration file"
     exit 0
   end
 
