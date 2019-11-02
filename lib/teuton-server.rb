@@ -18,16 +18,17 @@ class TeutonServer
   end
 
   def start_service(port)
-    server = TCPServer.open(port)    # Socket to listen on port
-    accept_clients server
+    service = TCPServer.open(port)
+    accept_clients service
   end
 
   def accept_clients(server)
     show_server server
     begin
       loop {
-        client = server.accept        # Wait for a client to connect
-        respond_to_client client
+        client = server.accept
+        message = run_local_action('teuton ../units/projects/gnulinux-basic/01')
+        respond_to_client client, message
       }
     rescue SystemExit, Interrupt
       puts "\n[ teuton-server ] Closing server..."
@@ -40,11 +41,16 @@ class TeutonServer
     puts "                  #{server.addr}"
   end
 
-  def respond_to_client(client)
-    msg = "teuton play 01 => grade 0%"
-    puts "[#{timestamp}] #{msg}"
+  def run_local_action(action)
+    ok = system(action)
+    status = (ok ? 'done!' : 'FAIL!')
+    "#{action} => Action #{status}"
+  end
+
+  def respond_to_client(client, message)
+    puts "[#{timestamp}] #{message}"
     show_client client
-    client.puts("[ teuton-server ] #{msg}")
+    client.puts("[ teuton-server ] #{message}")
     client.close
   end
 
