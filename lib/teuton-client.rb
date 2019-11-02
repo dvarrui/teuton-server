@@ -34,11 +34,17 @@ module TeutonClient
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-client [help] [hostname:IP] [port:PORTNUMBER]"
+    puts "    teuton-client [help|version] [hostname:IP] [port:PORTNUMBER]"
     puts "Params:"
     puts "    help, show this help"
+    puts "    version"
     puts "    hostname"
     puts "    port"
+    exit 0
+  end
+
+  def self.show_version
+    puts "teuton-client (version 0.0.1)"
     exit 0
   end
 end

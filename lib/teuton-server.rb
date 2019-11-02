@@ -45,4 +45,19 @@ class TeutonServer
     puts " ├── ADDR     : #{client.addr}"
     puts " └── PEERADDR : #{client.peeraddr}"
   end
+
+  def self.show_help
+    puts "Usage:"
+    puts "    teuton-server [configfile|help|version]"
+    puts "Params:"
+    puts "    configfile, YAML server configuration file"
+    puts "    help, show this help"
+    puts "    version"
+    exit 0
+  end
+
+  def self.show_version
+    puts "teuton-server (version 0.0.1)"
+    exit 0
+  end
 end
