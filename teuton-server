@@ -4,4 +4,5 @@ require_relative 'lib/teuton-server'
 
 TeutonServer.show_help if ARGV.first == 'help'
 TeutonServer.show_version if ARGV.first == 'version'
-TeutonServer.init(ARGV)
+TeutonServer.init(ARGV) if ARGV.size == 1
+TeutonServer.show_help

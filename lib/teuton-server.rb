@@ -9,13 +9,11 @@ module TeutonServer
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-server [help|version] [hostname:IP] [port:PORTNUMBER]"
+    puts "    teuton-server [help|version] [PATH/TO/server.yaml]"
     puts "Params:"
-    puts "    help, show this help"
-    puts "    version"
-    puts "    hostname"
-    puts "    port"
-    puts "    configfile, YAML server configuration file"
+    puts "    help       , show this help"
+    puts "    version    , show current version"
+    puts "    configfile , YAML server configuration file"
     exit 0
   end
 
