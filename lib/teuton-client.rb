@@ -19,11 +19,26 @@ module TeutonClient
   end
 
   def self.connect_to_server(hostname='localhost', port='6174')
-    puts "[INFO] Connecting to #{hostname}:#{port}"
-    s = TCPSocket.open(hostname, port)
+    puts "[ INFO  ] Connecting to #{hostname}:#{port}"
+    begin
+      s = TCPSocket.open(hostname, port)
+    rescue
+      puts "[ ERROR ] Server #{hostname}:#{port} not found!"
+      exit 1
+    end
     while line = s.gets    # Read lines from the socket
       puts line.chop       # And print with platform line terminator
     end
     s.close                # Close the socket when done
+  end
+
+  def self.show_help
+    puts "Usage:"
+    puts "    teuton-client [help] [hostname:IP] [port:PORTNUMBER]"
+    puts "Params:"
+    puts "    help, show this help"
+    puts "    hostname"
+    puts "    port"
+    exit 0
   end
 end
