@@ -43,14 +43,14 @@ class TeutonServer
 
   def run_local_action(action)
     ok = system(action)
-    status = (ok ? 'done!' : 'FAIL!')
-    "#{action} => Action #{status}"
+    status = (ok ? ' Done' : 'FAIL!')
+    "#{status} <== #{action} "
   end
 
   def respond_to_client(client, message)
     puts "[#{timestamp}] #{message}"
     show_client client
-    client.puts("[ teuton-server ] #{message}")
+    client.puts("        #{message}")
     client.close
   end
 
