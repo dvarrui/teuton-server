@@ -2,8 +2,8 @@ require 'socket'                 # Get sockets from stdlib
 
 class TeutonServer
   def run(input)
-    port = read_input(input)
-    start_service(port)
+    param = read_input(input)
+    start_service(param)
   end
 
   def read_input(input)
@@ -14,20 +14,22 @@ class TeutonServer
     end
     param[:hostname] = param[:hostname] || 'localhost'
     param[:port] = param[:port] || '6174'
-    return param[:port]
+    param[:pwd] = Dir.pwd
+    return param
   end
 
-  def start_service(port)
-    service = TCPServer.open(port)
-    accept_clients service
+  def start_service(param)
+    service = TCPServer.open(param[:port])
+    accept_clients service, param
   end
 
-  def accept_clients(server)
+  def accept_clients(server, param)
     show_server server
     begin
       loop {
         client = server.accept
-        message = run_local_action('teuton ../units/projects/gnulinux-basic/01')
+        file = File.join(param[:pwd], 'projects', 'gnulinux-basic', '01')
+        message = run_local_action("teuton play #{file}")
         respond_to_client client, message
       }
     rescue SystemExit, Interrupt
