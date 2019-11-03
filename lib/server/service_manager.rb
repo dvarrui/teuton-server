@@ -18,5 +18,7 @@ module ServiceManager
     puts "                 Configfile #{param[:configfile]}"
     puts "                 Listen #{param[:ip]}:#{param[:port]}"
     puts "                 (CTRL+C to exit)"
+
+    puts param[:server][:testunits].join(',')
   end
 end
