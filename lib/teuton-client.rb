@@ -1,18 +1,11 @@
-#!/usr/bin/env ruby
 require 'socket'
+require_relative 'client/input_loader'
 
 module TeutonClient
   def self.run(args)
     show_help unless args.size == 1
-    hostname, port = read_input(args[0])
+    hostname, port = InputLoader.read_input(args[0])
     connect_to_server(hostname, port)
-  end
-
-  def self.read_input(input)
-    items = input.split(':')
-    ip = (items[0].size > 0 ? items[0] : 'localhost')
-    port = (items[1].size > 0 ? items[1].to_i : 9000 )
-    return ip, port
   end
 
   def self.connect_to_server(hostname='localhost', port='6174')
