@@ -9,6 +9,10 @@ module InputLoader
   end
 
   def self.read_yaml(filename)
+    unless (File.exists?(filename) && !File.directory?(filename))
+      puts "[ERROR] Config file #{filename} not found!"
+      exit 1
+    end
     param = YAML.load_file(filename)
     param[:hostname] = param[:server][:ip]
     param[:port] = param[:server][:port]
