@@ -1,0 +1,10 @@
+---
+:server:
+  :ip: 127.0.0.1
+  :port: 9000
+  :testunits:
+    - testname01
+:global:
+:cases:
+- :tt_members: client01
+  :tt_client_ip: 127.0.0.1
