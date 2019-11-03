@@ -3,40 +3,30 @@ require 'socket'
 class Service
   def run(param)
     service = TCPServer.open(param[:port])
-    show_service(service)
+    # show_service(service)
+    # puts "                  #{server.addr}"
     accept_clients service, param
   end
 
   private
 
   def accept_clients(server, param)
-    begin
-      loop {
-        client = server.accept
-        file = File.join(param[:pwd], 'projects', 'gnulinux-basic', '01')
-        message = run_local_action("teuton play #{file}")
-        respond_to_client client, message
-      }
-    rescue SystemExit, Interrupt
-      puts "\n[ teuton-server ] Closing server..."
-      exit 0
-    end
-  end
-
-  def show_service(server)
-    puts "[ teuton-service ] Running... (CTRL+C to exit)"
-    puts "                  #{server.addr}"
+    loop {
+      client = server.accept
+      file = File.join(param[:pwd], 'projects', 'gnulinux-basic', '01')
+      message = run_local_action("teuton play #{file}")
+      respond_to_client client, message
+    }
   end
 
   def run_local_action(action)
     ok = system(action)
-    status = (ok ? ' Done' : 'FAIL!')
-    "#{status} <== #{action} "
+    "  #{(ok ? '       ' : 'FAIL!: ')}#{action} "
   end
 
   def respond_to_client(client, message)
     puts "[#{timestamp}] #{message}"
-    show_client client
+    show_connected_client client
     client.puts("        #{message}")
     client.close
   end
@@ -48,7 +38,7 @@ class Service
     m
   end
 
-  def show_client(client)
+  def show_connected_client(client)
     puts "   ├── ADDR     : #{client.addr}"
     puts "   └── PEERADDR : #{client.peeraddr}"
   end
