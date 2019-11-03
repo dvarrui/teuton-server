@@ -16,6 +16,7 @@ module InputLoader
     end
     param = YAML.load_file(filepath)
     param[:configfile] = filepath
+    param[:configdir] = File.dirname(filepath)
     param[:hostname] = param[:server][:ip]
     param[:port] = param[:server][:port]
     param

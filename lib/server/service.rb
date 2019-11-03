@@ -13,7 +13,7 @@ class Service
   def accept_clients(server, param)
     loop {
       client = server.accept
-      file = File.join(param[:pwd], 'projects', 'gnulinux-basic', '01')
+      file = File.join(param[:configdir], '01')
       message = run_local_action("teuton play #{file}")
       respond_to_client client, message
     }
