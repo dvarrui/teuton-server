@@ -9,17 +9,17 @@ module ServiceManager
       # Run 1 service
       Service.new.run(services_param[0])
     rescue SystemExit, Interrupt
-      puts "\nteuton-server => Closing..."
+      puts Rainbow("\nteuton-server => Closing...").yellow
       exit 0
     end
   end
 
   def self.show_starting(param)
-    puts "teuton-server => Starting..."
+    puts Rainbow("teuton-server => Starting...").bright
     puts "                 Configfile : #{param[:server][:configfile]}"
     puts "                 Listen on  : #{param[:server][:ip]}:#{param[:server][:port]}"
     puts "                 Test list  : #{param[:server][:testunits].join(',')}"
-    puts "                 (CTRL+C to exit)"
+    puts Rainbow("                 (CTRL+C to exit)").bright.green
   end
 
   def self.split_app_param_into_services_param(app_param)

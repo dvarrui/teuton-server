@@ -9,8 +9,8 @@ class Service
   private
 
   def accept_clients(service, param)
-    puts "teuton-server => service [#{param[:client][:id]}] " +
-         "listening on #{param[:server][:port]}..."
+    puts Rainbow("teuton-server => service [#{param[:client][:id]}] " +
+         "listening on #{param[:server][:port]}...").bright
     #puts "                 #{service.addr}"
     actions = []
     loop {
@@ -33,7 +33,8 @@ class Service
   def respond_to_client(client, param, action)
     #puts "                 ADDR        : #{client.addr}"
     #puts "                 PEERADDR    : #{client.peeraddr}"
-    puts "teuton-server => working...   service[#{param[:client][:id]}]"
+    puts Rainbow("teuton-server => working...   " +
+         "service[#{param[:client][:id]}]").bright
     src = "#{param[:server][:ip]}:#{param[:server][:port]}"
     dest = "#{param[:client][:ip]}:#{client.peeraddr[1]}"
     tab = '                 '
@@ -43,7 +44,7 @@ class Service
              tab + "Timestamp  : #{action[:timestamp]}\n" +
              tab + "Action     : #{action[:cmd]}\n" +
              tab + "Status     : #{action[:status]}\n"
-    puts output 
+    puts output
     client.puts("Connection : #{src} -> #{dest} ")
     client.puts("Timestamp  : #{action[:timestamp]}")
     client.puts("Action     : #{action[:cmd]}")

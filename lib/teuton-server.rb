@@ -29,7 +29,7 @@ module TeutonServer
     src = File.join(File.dirname(__FILE__), 'server', 'files', 'server.yaml')
     dest = File.join( 'server.yaml')
     FileUtils.cp(src, dest)
-    puts "[ teuton-server ] Init done!"
+    puts Rainbow("teuton-server => Init done! [#{dest}]").yellow
     exit 0
   end
 end

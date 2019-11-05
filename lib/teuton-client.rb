@@ -1,4 +1,5 @@
 require 'socket'
+require 'rainbow'
 require_relative 'client/input_loader'
 
 module TeutonClient
@@ -9,11 +10,14 @@ module TeutonClient
   end
 
   def self.connect_to_server(hostname='localhost', port='6174')
-    puts "teuton-client => Waiting...   #{hostname}:#{port} (teuton-server)"
+    puts Rainbow("teuton-client => Waiting...   " +
+                 "#{hostname}:#{port} (teuton-server)").bright
     begin
       s = TCPSocket.open(hostname, port)
     rescue
-      puts "teuton-client => ERROR: Server #{hostname}:#{port} not found!"
+      puts Rainbow("teuton-client => " +
+                   "ERROR        teuton-server not found!" +
+                   " [#{hostname}:#{port}]").bright.red
       exit 1
     end
     while line = s.gets    # Read lines from the socket
