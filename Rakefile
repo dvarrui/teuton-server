@@ -53,7 +53,7 @@ def install_gems list
   if !fails.empty?
     puts "[ INFO ] Installing gems..."
     fails.each do |name|
-      system("gem install #{name} #{options}")
+      system("gem install #{name}")
     end
   else
     puts '[  OK  ] Gems installed'
