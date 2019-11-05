@@ -2,45 +2,50 @@ require 'socket'
 
 class Service
   def run(param)
-    service = TCPServer.open(param[:port])
-    # show_service(service)
-    # puts "                  #{server.addr}"
+    service = TCPServer.open(param[:server][:port])
     accept_clients service, param
   end
 
   private
 
-  def accept_clients(server, param)
+  def accept_clients(service, param)
+    puts "teuton-server => service [#{param[:client][:id]}] " +
+         "listening on #{param[:server][:port]}..."
+    #puts "                 #{service.addr}"
+    actions = []
     loop {
-      client = server.accept
-      file = File.join(param[:configdir], '01')
-      message = run_local_action("teuton play #{file}")
-      respond_to_client client, message
+      client = service.accept
+      file = File.join(param[:server][:configdir], '01')
+      action = {}
+      action[:cmd] = "teuton play #{file}"
+      action[:status] = run_local_action(action[:cmd])
+      action[:timestamp] = Time.now
+      actions << action
+      respond_to_client client, param, action
     }
   end
 
   def run_local_action(action)
     ok = system(action)
-    "  #{(ok ? '       ' : 'FAIL!: ')}#{action} "
+    return (ok ? 'Ok' : 'FAIL! ')
   end
 
-  def respond_to_client(client, message)
-    puts "[#{timestamp}] #{message}"
-    show_connected_client client
-    client.puts("        #{message}")
+  def respond_to_client(client, param, action)
+    puts "teuton-server => working...   service[#{param[:client][:id]}]"
+    src = "#{param[:server][:ip]}:#{param[:server][:port]}"
+    dest = "#{param[:client][:ip]}:#{client.peeraddr[1]}"
+    tab = '                 '
+    puts tab + "Members    : #{param[:client][:members]}"
+    puts tab + "Connection : #{src} -> #{dest}"
+    #puts "                 ADDR        : #{client.addr}"
+    #puts "                 PEERADDR    : #{client.peeraddr}"
+    puts tab + "Timestamp  : #{action[:timestamp]}"
+    puts tab + "Action     : #{action[:cmd]}"
+    puts tab + "Status     : #{action[:status]}"
+    client.puts("Connection : #{src} -> #{dest} ")
+    client.puts("Timestamp  : #{action[:timestamp]}")
+    client.puts("Action     : #{action[:cmd]}")
+    client.puts("Status     : #{action[:status]}")
     client.close
   end
-
-  def timestamp
-    t = Time.now
-    m = "#{t.year}#{format('%02d',t.month)}#{format('%02d',t.day)}-" +
-        "#{format('%02d',t.hour)}#{format('%02d',t.min)}#{format('%02d',t.sec)}"
-    m
-  end
-
-  def show_connected_client(client)
-    puts "   ├── ADDR     : #{client.addr}"
-    puts "   └── PEERADDR : #{client.peeraddr}"
-  end
-
 end

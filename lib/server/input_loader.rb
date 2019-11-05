@@ -4,8 +4,7 @@ module InputLoader
   def self.read_input_args(input)
     param = {}
     param = read_yaml(input[0])
-    param[:pwd] = Dir.pwd
-    return param
+    param
   end
 
   def self.read_yaml(filepath)
@@ -15,10 +14,8 @@ module InputLoader
       exit 1
     end
     param = YAML.load_file(filepath)
-    param[:configfile] = filepath
-    param[:configdir] = File.dirname(filepath)
-    param[:hostname] = param[:server][:ip]
-    param[:port] = param[:server][:port]
+    param[:server][:configfile] = filepath
+    param[:server][:configdir] = File.dirname(filepath)
     param
   end
 end

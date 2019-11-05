@@ -2,11 +2,12 @@
 require_relative 'service'
 
 module ServiceManager
-  def self.start_services(param)
-    show_starting(param)
+  def self.start_services(app_param)
+    show_starting(app_param)
+    services_param = split_app_param_into_services_param(app_param)
     begin
       # Run 1 service
-      Service.new.run(param)
+      Service.new.run(services_param[0])
     rescue SystemExit, Interrupt
       puts "\nteuton-server => Closing..."
       exit 0
@@ -15,9 +16,22 @@ module ServiceManager
 
   def self.show_starting(param)
     puts "teuton-server => Starting..."
-    puts "                 Configfile #{param[:configfile]}"
-    puts "                 Listen #{param[:ip]}:#{param[:port]}"
+    puts "                 Configfile : #{param[:server][:configfile]}"
+    puts "                 Listen on  : #{param[:server][:ip]}:#{param[:server][:port]}"
+    puts "                 Test list  : #{param[:server][:testunits].join(',')}"
     puts "                 (CTRL+C to exit)"
-    puts param[:server][:testunits].join(',')
+  end
+
+  def self.split_app_param_into_services_param(app_param)
+    services_param = []
+    app_param[:clients].each_with_index do |client, index|
+      param = { server: {}, client: {} }
+      param[:server].merge! app_param[:server] if app_param[:server]
+      param[:server][:hostname] = param[:server][:ip]
+      param[:client].merge! client
+      param[:client][:id] = index
+      services_param << param
+    end
+    services_param
   end
 end

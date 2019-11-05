@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'rainbow'
 require_relative 'server/input_loader'
 require_relative 'server/service_manager'
 
