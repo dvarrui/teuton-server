@@ -7,6 +7,7 @@ module TeutonClient
     show_help unless args.size == 1
     hostname, port = InputLoader.read_input(args[0])
     connect_to_server(hostname, port)
+    exit 0
   end
 
   def self.connect_to_server(hostname='localhost', port='6174')
@@ -28,12 +29,11 @@ module TeutonClient
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-client [help|version] [IP:port]"
+    puts "    teuton-client [help|version] [IP:PORT]"
     puts "Params:"
     puts "    help    , show this help"
     puts "    version , show current version"
-    puts "    IP      , Teuton server IP"
-    puts "    port    , Teuton server port number"
+    puts "    IP:PORT , Teuton server IP:PORT"
     exit 0
   end
 

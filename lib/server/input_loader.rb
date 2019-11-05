@@ -10,7 +10,7 @@ module InputLoader
   def self.read_yaml(filepath)
     filepath = File.join(filepath, 'server.yaml') if File.directory? filepath
     unless File.exists? filepath
-      puts "[ERROR] Config file #{filepath} not found!"
+      puts Rainbow("[ERROR] Config file  \'#{filepath}\' not found!").red
       exit 1
     end
     param = YAML.load_file(filepath)

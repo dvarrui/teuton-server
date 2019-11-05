@@ -10,7 +10,7 @@ class Service
 
   def accept_clients(service, param)
     puts Rainbow("teuton-server => service [#{param[:client][:id]}] " +
-         "listening on #{param[:server][:port]}...").bright
+         "listening on \'#{param[:server][:port]}\'...").bright
     #puts "                 #{service.addr}"
     actions = []
     loop {
