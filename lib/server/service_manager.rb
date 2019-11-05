@@ -19,7 +19,7 @@ module ServiceManager
     puts "                 Configfile : #{param[:server][:configfile]}"
     puts "                 Listen on  : #{param[:server][:ip]}:#{param[:server][:port]}"
     puts "                 Test list  : #{param[:server][:testunits].join(',')}"
-    puts Rainbow("                 (CTRL+C to exit)").bright.green
+    puts Rainbow("                 (CTRL+C to exit)").bright.yellow
   end
 
   def self.split_app_param_into_services_param(app_param)

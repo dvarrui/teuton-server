@@ -17,7 +17,7 @@ class Service
       client = service.accept
       file = File.join(param[:server][:configdir], '01')
       action = {}
-      action[:cmd] = "teuton play #{file}"
+      action[:cmd] = "teuton play --quiet #{file}"
       action[:status] = run_local_action(action[:cmd])
       action[:timestamp] = Time.now
       actions << action
