@@ -4,5 +4,4 @@ require_relative 'lib/teuton-client'
 
 TeutonClient.show_help if ARGV.first == 'help'
 TeutonClient.show_version if ARGV.first == 'version'
-TeutonClient.run(ARGV) if ARGV.size == 1
-TeutonClient.show_help
+TeutonClient.run(ARGV)

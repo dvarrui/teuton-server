@@ -1,9 +1,8 @@
 
 module InputLoader
-  def self.read_input(input)
-    items = ( input.split(':') == [] ? ['localhost', 16000] :input.split(':'))
-    ip = (items[0].size == 0 ? 'localhost' : items[0])
-    port = (items[1].nil? ? 16000 : items[1].to_i )
+  def self.read_input(args)
+    ip = (args[0] ? args[0] : 'localhost')
+    port = (args[1] ? args[1] : 16000)
     return ip, port
   end
-end 
+end

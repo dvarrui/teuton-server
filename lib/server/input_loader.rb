@@ -4,6 +4,10 @@ module InputLoader
   def self.read_input_args(input)
     param = {}
     param = read_yaml(input[0])
+    param[:server][:ip] = input[1] if input[1]
+    param[:server][:ip] = '127.0.0.1' if param[:server][:ip].nil?
+    param[:server][:port] = input[2] if input[2]
+    param[:server][:port] = 16000 if param[:server][:port].nil?
     param
   end
 

@@ -4,8 +4,7 @@ require_relative 'client/input_loader'
 
 module TeutonClient
   def self.run(args)
-    show_help unless args.size == 1
-    hostname, port = InputLoader.read_input(args[0])
+    hostname, port = InputLoader.read_input(args)
     connect_to_server(hostname, port)
     exit 0
   end
@@ -29,11 +28,11 @@ module TeutonClient
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-client [help|version] [IP:PORT]"
+    puts "    teuton-client [help|version] [IP [PORT]]"
     puts "Params:"
     puts "    help    , show this help"
     puts "    version , show current version"
-    puts "    IP:PORT , Teuton server IP:PORT"
+    puts "    IP PORT , Teuton server IP and/or PORT"
     exit 0
   end
 
