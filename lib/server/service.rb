@@ -13,27 +13,38 @@ class Service
          "listening on \'#{param[:server][:port]}\'...").bright
     #puts "                 #{service.addr}"
     @actions = []
+    @testindex = 0
     loop {
       client = service.accept
-
-      action = run_local_action(param)
+      action = run_local_action(param, @testindex)
       respond_to_client client, param, action
       @actions << action
     }
   end
 
-  def run_local_action(param)
-    file = File.join(param[:server][:configdir], '01')
-    report = File.join('var', param[:server][:testunits][0], 'case-01.txt')
-    puts report
-    command = "teuton play --quiet #{file}"
-
+  def run_local_action(param, testindex)
+    testname = param[:server][:testunits][testindex]
+    file = File.join(param[:server][:configdir], testname)
+    id = param[:client][:id]
+    command = "teuton play --quiet --case=#{id} #{file}"
     ok = system(command)
     action = {}
     action[:timestamp] = Time.now
     action[:cmd] = command
-    action[:status] = (ok ? 'Ok' : 'FAIL! ')
+    action[:grade] = Rainbow('FAIL!').red
+    action[:grade] = get_grade_from_report(param, testindex) if ok
     action
+  end
+
+  def get_grade_from_report(param, testindex)
+    testname = param[:server][:testunits][testindex]
+    id = param[:client][:id]
+    id_tos = (id > 9 ? id.to_s : format('%02d',id))
+    report_path = File.join('var', testname, "case-#{id_tos}.txt")
+    return 'Unkown' unless File.exists? report_path
+    grade = `cat #{report_path} | grep grade`
+    grade.chop!.gsub!('|','').gsub!(' ','').gsub!('grade','')
+    return grade
   end
 
   def respond_to_client(client, param, action)
@@ -49,12 +60,12 @@ class Service
              tab + "Connection : #{src} -> #{dest}\n" +
              tab + "Timestamp  : #{action[:timestamp]}\n" +
              tab + "Action     : #{action[:cmd]}\n" +
-             tab + "Status     : #{action[:status]}\n"
+             tab + "Grade      : #{action[:grade]}\n"
     puts output
     client.puts("Connection : #{src} -> #{dest} ")
     client.puts("Timestamp  : #{action[:timestamp]}")
     client.puts("Action     : #{action[:cmd]}")
-    client.puts("Status     : #{action[:status]}")
+    client.puts("Grade      : #{action[:grade]}")
     client.close
   end
 end
