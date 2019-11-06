@@ -12,25 +12,28 @@ class Service
     puts Rainbow("teuton-server => service [#{param[:client][:id]}] " +
          "listening on \'#{param[:server][:port]}\'...").bright
     #puts "                 #{service.addr}"
-    actions = []
+    @actions = []
     loop {
       client = service.accept
-      file = File.join(param[:server][:configdir], '01')
-      report = File.join('var', param[:server][:testunits][0], 'case-01.txt')
-      puts report
-      action = run_local_action("teuton play --quiet #{file}")
+
+      action = run_local_action(param)
       respond_to_client client, param, action
-      actions << action
+      @actions << action
     }
   end
 
-  def run_local_action(command)
+  def run_local_action(param)
+    file = File.join(param[:server][:configdir], '01')
+    report = File.join('var', param[:server][:testunits][0], 'case-01.txt')
+    puts report
+    command = "teuton play --quiet #{file}"
+
     ok = system(command)
     action = {}
     action[:timestamp] = Time.now
     action[:cmd] = command
     action[:status] = (ok ? 'Ok' : 'FAIL! ')
-    return action
+    action
   end
 
   def respond_to_client(client, param, action)

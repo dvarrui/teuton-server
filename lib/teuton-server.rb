@@ -13,10 +13,10 @@ module TeutonServer
     puts "Usage:"
     puts "    teuton-server [help|version] [PATH/TO/server.yaml]"
     puts "Params:"
-    puts "    help       , show this help"
-    puts "    init       , Create server.yaml"
-    puts "    version    , show current version"
+    puts "    help       , Show this help"
+    puts "    init       , Create server.yaml config file"
     puts "    configfile , YAML server configuration file"
+    puts "    version    , Show current version"
     exit 0
   end
 
