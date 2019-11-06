@@ -16,18 +16,21 @@ class Service
     loop {
       client = service.accept
       file = File.join(param[:server][:configdir], '01')
-      action = {}
-      action[:cmd] = "teuton play --quiet #{file}"
-      action[:status] = run_local_action(action[:cmd])
-      action[:timestamp] = Time.now
-      actions << action
+      report = File.join('var', param[:server][:testunits][0], 'case-01.txt')
+      puts report
+      action = run_local_action("teuton play --quiet #{file}")
       respond_to_client client, param, action
+      actions << action
     }
   end
 
-  def run_local_action(action)
-    ok = system(action)
-    return (ok ? 'Ok' : 'FAIL! ')
+  def run_local_action(command)
+    ok = system(command)
+    action = {}
+    action[:timestamp] = Time.now
+    action[:cmd] = command
+    action[:status] = (ok ? 'Ok' : 'FAIL! ')
+    return action
   end
 
   def respond_to_client(client, param, action)

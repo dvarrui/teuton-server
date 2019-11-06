@@ -21,7 +21,7 @@ module TeutonServer
   end
 
   def self.show_version
-    puts "teuton-server (version 0.0.1)"
+    puts "teuton-server => " + Rainbow("version 0.0.1").cyan
     exit 0
   end
 
