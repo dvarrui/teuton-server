@@ -28,8 +28,12 @@ module TeutonServer
   def self.init(arg)
     src = File.join(File.dirname(__FILE__), 'server', 'files', 'server.yaml')
     dest = File.join( 'server.yaml')
+    if File.exists? dest
+      puts "teuton-server => " + Rainbow("File \'#{dest}\' exists!").red
+      exit 1
+    end
     FileUtils.cp(src, dest)
-    puts Rainbow("teuton-server => Init done! [#{dest}]").yellow
+    puts "teuton-server => " + Rainbow("Init \'#{dest}\' done!").yellow
     exit 0
   end
 end
