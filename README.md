@@ -1,11 +1,9 @@
 
-```
-UNDER DEVELOPEMNT!
-```
-
 # Teuton Server
 
-# Running 
+[Teuton](https://github.com/teuton-software/teuton) is an infrastructure test application.
+
+# Running
 
 Run server:
 
@@ -18,4 +16,3 @@ Run client:
 ```bash
 teuton-client SERVER_IP
 ```
-
