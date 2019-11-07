@@ -11,12 +11,15 @@ module TeutonServer
 
   def self.show_help
     puts "Usage:"
-    puts "    teuton-server [help|version] [PATH/TO/server.yaml]"
+    puts "    teuton-server [help|version] [PATH/TO/server.yaml [IP]]"
     puts "Params:"
-    puts "    help       , Show this help"
-    puts "    init       , Create server.yaml config file"
-    puts "    configfile , YAML server configuration file"
-    puts "    version    , Show current version"
+    puts "    help      , Show this help"
+    puts "    version   , Show current version"
+    puts "    init      , Create server.yaml config file"
+    puts "    CONFIGFILE, YAML server configuration file"
+    puts "Example:"
+    puts "    Start TeutonServer using 192.168.1.16 IP:"
+    puts "          teuton-server server.yaml 192.168.1.16"
     exit 0
   end
 

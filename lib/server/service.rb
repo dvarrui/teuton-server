@@ -16,10 +16,36 @@ class Service
     @testindex = 0
     loop {
       client = service.accept
-      action = run_local_action(param, @testindex)
-      respond_to_client client, param, action
-      @actions << action
+      if authorized_request?(client, param)
+        @actions << accept_request(client, param, @testindex)
+      else
+        @actions << deny_request(client, param)
+      end
     }
+  end
+
+  def authorized_request?(client, param)
+    return param[:client][:ip] == client.peeraddr[2]
+  end
+
+  def deny_request(client, param)
+    puts Rainbow("teuton-server => service [#{param[:client][:id]}] " +
+         "listening on \'#{param[:server][:port]}\'...").bright
+    puts "                 " +
+         Rainbow("WARN: Request not authorized " +
+         "\'#{client.peeraddr[2]}:#{param[:server][:port]}\'").yellow
+    client.puts Rainbow('Request denied from TeutonServer!').yellow
+    client.close
+    action = {}
+    action[:timestamp] = Time.now
+    action[:status] = 'Request denied'
+    action
+  end
+
+  def accept_request(client, param, testindex)
+    action = run_local_action(param, testindex)
+    respond_to_client client, param, action
+    action
   end
 
   def run_local_action(param, testindex)
