@@ -12,7 +12,7 @@ module ServiceManager
       end
       services.each { |service| service.join }
     rescue SystemExit, Interrupt
-      puts Rainbow("\nteuton-server => Closing...").yellow
+      puts Rainbow("\nteuton-server => Closing...").bright
       exit 0
     end
   end
