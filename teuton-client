@@ -2,6 +2,11 @@
 
 require_relative 'lib/teuton-client'
 
+# TeutonClient has these main actions:
+# * help    => show_help
+# * version => show_version
+# * init    => init or create server config file
+# * run     => Run Teuton Client to connect to Teuton Server
 TeutonClient.show_help if ARGV.first == 'help'
 TeutonClient.show_version if ARGV.first == 'version'
 TeutonClient.init if ARGV.first == 'init'
