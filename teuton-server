@@ -1,13 +1,1 @@
-#!/usr/bin/env ruby
-
-require_relative 'lib/teuton-server'
-
-# TeutonServer has these main actions:
-# * help    => show_help
-# * version => show_version
-# * init    => init or create server config file
-# * start   => Start Teuton Server
-TeutonServer.show_help if ARGV.first == 'help' || ARGV.size.zero?
-TeutonServer.show_version if ARGV.first == 'version'
-TeutonServer.init(ARGV) if ARGV.first == 'init'
-TeutonServer.start(ARGV) if ARGV.size > 0
+bin/teuton-server
