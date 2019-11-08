@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/teuton-server'
+require 'teuton-server'
 
 # TeutonServer has these main actions:
 # * help    => show_help

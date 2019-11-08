@@ -17,6 +17,13 @@ task :help do
   system('rake -T')
 end
 
+desc 'Build gem'
+task :build do
+  system('gem build teuton-server.gemspec')
+end
+
+end
+
 desc 'Gems installation'
 task :install_gems do
   install_gems gems
@@ -63,6 +70,5 @@ end
 def create_symbolic_link
   puts '[ INFO ] Creating symbolic link into /usr/local/bin'
   basedir = File.dirname(__FILE__)
-  system("ln -s #{basedir}/teuton-client /usr/local/bin/teuton-client")
   system("ln -s #{basedir}/teuton-server /usr/local/bin/teuton-server")
 end
