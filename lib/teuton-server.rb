@@ -38,5 +38,6 @@ module TeutonServer
     FileUtils.cp(src, dest)
     puts "teuton-server => " + Rainbow("Init \'#{dest}\' done!").yellow
     exit 0
+    # TODO: a = Dir.glob(File.join('projects/gnulinux-basic/**','start.rb'))
   end
 end
