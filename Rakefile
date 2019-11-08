@@ -22,8 +22,6 @@ task :build do
   system('gem build teuton-server.gemspec')
 end
 
-end
-
 desc 'Gems installation'
 task :install_gems do
   install_gems gems
