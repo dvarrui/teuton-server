@@ -1,7 +1,8 @@
 require 'fileutils'
 require 'rainbow'
-require_relative 'server/input_loader'
-require_relative 'server/service_manager'
+require_relative 'teuton-server/application'
+require_relative 'teuton-server/input_loader'
+require_relative 'teuton-server/service_manager'
 
 module TeutonServer
   def self.start(args)
@@ -24,13 +25,14 @@ module TeutonServer
   end
 
   def self.show_version
-    puts "teuton-server => " + Rainbow("version 0.0.1").cyan
+    puts "teuton-server => " + Rainbow("version #{Application::VERSION}").cyan
     exit 0
   end
 
   def self.init(arg)
-    src = File.join(File.dirname(__FILE__), 'server', 'files', 'server.yaml')
-    dest = File.join( 'server.yaml')
+    src = File.join(File.dirname(__FILE__), 'teuton-server', 'files',
+          Application::CONFIGFILE)
+    dest = File.join(Application::CONFIGFILE)
     if File.exists? dest
       puts "teuton-server => " + Rainbow("File \'#{dest}\' exists!").red
       exit 1

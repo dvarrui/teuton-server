@@ -10,6 +10,7 @@ desc 'Check installation'
 task :check do
   check_gems gems
   check_tests
+  Rake::Task['build'].invoke
 end
 
 desc 'Rake help'
@@ -19,6 +20,7 @@ end
 
 desc 'Build gem'
 task :build do
+  puts "[ INFO ] Building gem..."
   system('gem build teuton-server.gemspec')
 end
 
