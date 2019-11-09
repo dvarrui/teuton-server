@@ -21,6 +21,7 @@ end
 desc 'Build gem'
 task :build do
   puts "[ INFO ] Building gem..."
+  system('rm teuton-server-*.*.*.gem')
   system('gem build teuton-server.gemspec')
 end
 
