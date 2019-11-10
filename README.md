@@ -7,6 +7,13 @@
 
 When a S-NODE user X wants to be tested, must wait until T-NODE user launch Teuton test unit.
 
+
+## Installation 
+
+`gem install teuton-server`
+
+> Teuton Software must be installed before start TeutonServer
+
 ## Teuton Server software
 
 First, Teuton server is installed into T-NODE.
