@@ -6,6 +6,10 @@ Gem::Specification.new do |s|
   s.date        = '2019-11-09'
   s.summary     = "TeutonServer (Teuton Software)"
   s.description = "TeutonServer listens and responds TeutonClients request"
+  s.extra_rdoc_files = [ 'README.md',
+                         'docs/configfile.md',
+                         'docs/installation.md',
+                         'docs/start.md' ]
 
   s.license     = 'GPL-3.0'
   s.authors     = ['David Vargas Ruiz']
