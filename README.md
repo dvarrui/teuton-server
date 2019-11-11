@@ -15,9 +15,8 @@ But with TeutonServer, T-NODE host listen to evaluation requests from S-NODE hos
 
 ## Running
 
-* `teuton-server init`, create Teuton Server configuration file on T-NODE host.
-* Personalize `teuton-server.yaml` configurations (server IP, testunits names, clients IP, etc).
-* `teuton-server` runs Teuton Server into T-NODE host.
+1. `teuton-server init`, create Teuton Server configuration file on T-NODE host. Personalize `teuton-server.yaml` configurations (server IP, testunits names, clients IP, etc).
+1. `teuton-server` runs Teuton Server into T-NODE host.
 
 > Now we can send requests to TeutonServer from S-NODE hosts, using [Teuton Client](https://github.com/dvarrui/teuton-client).
 
