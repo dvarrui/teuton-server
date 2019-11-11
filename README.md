@@ -11,37 +11,20 @@ But with TeutonServer, T-NODE host listen to evaluation requests from S-NODE hos
 
 ## Installation
 
-`gem install teuton-server`
+* Then `gem install teuton-server`, to install TeutonServer.
 
-> Ensure Teuton Software is installed before start TeutonServer
+> Ensure [Teuton Software](https://github.com/teuton-software/teuton) is installed too.
 
 # Running Teuton Server
 
 * `teuton-server init`, create Teuton Server configuration file on T-NODE host.
-* Change `server.yaml` configurations (server IP, testunits names, clients IP, etc):
+* Personalize `teuton-server.yaml` configurations (server IP, testunits names, clients IP, etc).
+* `teuton-server` runs Teuton Server into T-NODE host.
 
-```
----
-:server:
- :ip: 127.0.0.1
- :port: 16000
- :testunits:
-   - testname01
-:clients:
-- :members: client01
- :ip: 127.0.0.1
-```
+> Now we can send requests to TeutonServer from S-NODE hosts, using [Teuton Client](https://github.com/dvarrui/teuton-client).
 
-* `teuton-server ` runs Teuton Server into T-NODE host:
+# Documentation
 
-```
-teuton-server => Starting...
-                Configfile : ./teuton-server.yaml
-                Listen on  : 127.0.0.1:16000
-                Test list  : testname01
-                (CTRL+C to exit)
-teuton-server => service [1] listening on '16001'...
-
-```
-
-Now we can send requests to server from S-NODE hosts, using Teuton Client.
+* [Installation](docs/installation.md)
+* [Start TeutonServer](docs/start.md)
+* [Configuration file](docs/configfile.md)

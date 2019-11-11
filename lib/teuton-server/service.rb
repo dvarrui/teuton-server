@@ -25,6 +25,8 @@ class Service
   end
 
   def authorized_request?(client, param)
+    return true if param[:client][:ip] == :allow
+    return false if param[:client][:ip] == :deny
     return param[:client][:ip] == client.peeraddr[2]
   end
 
