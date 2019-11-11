@@ -34,7 +34,7 @@ module TeutonServer
   end
 
   # Create default configuration file
-  # @param args [Array] List of arguments, where args[0]='init'
+  # @param args [Array] List of arguments, where args.first = 'init'
   def self.init(args)
     folder = '.'
     folder = args[1] if args.size > 1
@@ -48,6 +48,8 @@ module TeutonServer
     FileUtils.cp(src, dest)
     puts "teuton-server => " + Rainbow("Init \'#{dest}\' done!").yellow
     exit 0
-    # TODO: a = Dir.glob(File.join('projects/gnulinux-basic/**','start.rb'))
+    # TODO:
+    # Add testunits list by default 
+    # a = Dir.glob(File.join('projects/gnulinux-basic/**','start.rb'))
   end
 end

@@ -1,7 +1,15 @@
 
 require_relative 'service'
 
+# This module start a group of services. One for every client.
+# Every service listen on diferent ports. For example:
+# * service 1 listen on port PORT+1, client 1 requests.
+# * service 2 listen on port PORT+2, client 2 requests.
+# * etc.
 module ServiceManager
+  # Start one service for every client.
+  # @param app_param [Hash] Application configuration params
+  # @return [Integer] Exit 0 = OK. Exit 1 = ERROR
   def self.start_services(app_param)
     show_starting(app_param)
     services_param = split_app_param_into_services_param(app_param)
