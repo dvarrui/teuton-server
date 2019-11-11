@@ -23,6 +23,9 @@ task :build do
   puts "[ INFO ] Building gem..."
   system('rm teuton-server-*.*.*.gem')
   system('gem build teuton-server.gemspec')
+  puts "[ INFO ] Generating documentation..."
+  system('rm -r html/*')
+  system('yard doc lib/* -o html')
 end
 
 desc 'Gems installation'

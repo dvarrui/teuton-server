@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
                          'docs/configfile.md',
                          'docs/installation.md',
                          'docs/start.md' ]
+  s.metadata["yard.run"] = "yri"
 
   s.license     = 'GPL-3.0'
   s.authors     = ['David Vargas Ruiz']
