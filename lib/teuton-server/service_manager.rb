@@ -9,7 +9,7 @@ require_relative 'service'
 module ServiceManager
   # Start one service for every client.
   # @param app_param [Hash] Application configuration params
-  # @return [Integer] Exit 0 = OK. Exit 1 = ERROR
+  # @return [Exit status] Exit 0 = OK. Exit 1 = ERROR
   def self.start_services(app_param)
     show_starting(app_param)
     services_param = split_app_param_into_services_param(app_param)
