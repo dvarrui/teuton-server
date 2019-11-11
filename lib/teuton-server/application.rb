@@ -1,3 +1,4 @@
+# This module groups some global configuration params.
 module Application
   NAME = 'teuton-server'
   VERSION = '0.0.3'

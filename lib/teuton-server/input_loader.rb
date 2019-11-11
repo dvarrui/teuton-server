@@ -1,7 +1,11 @@
 require 'yaml'
 require_relative 'application'
 
+# This module reads input configuration
 module InputLoader
+  # Read input configuration
+  # @param args [Array] List of arguments
+  # @return [Hash]
   def self.read_input_args(args)
     input = (args.size.zero? ? [Application::CONFIGFILE] : args)
     param = {}
@@ -13,6 +17,9 @@ module InputLoader
     param
   end
 
+  # Read configuration from YAML file
+  # @param filepath [String] Path to YAML file.
+  # @return [Hash]
   def self.read_yaml(filepath)
     filepath = File.join(filepath,
                Application::CONFIGFILE) if File.directory? filepath

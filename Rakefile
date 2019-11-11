@@ -24,8 +24,8 @@ task :build do
   system('rm teuton-server-*.*.*.gem')
   system('gem build teuton-server.gemspec')
   puts "[ INFO ] Generating documentation..."
-  system('rm -r html/*')
-  system('yard doc lib/* -o html')
+  system('rm -r html/')
+  system('yardoc lib/* -o html')
 end
 
 desc 'Gems installation'

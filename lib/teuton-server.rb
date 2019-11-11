@@ -5,11 +5,14 @@ require_relative 'teuton-server/input_loader'
 require_relative 'teuton-server/service_manager'
 
 module TeutonServer
+  # Start TeutonServer
+  # @param args [Array] List of arguments
   def self.start(args)
     param = InputLoader.read_input_args(args)
     ServiceManager.start_services(param)
   end
 
+  # Show TeutonServer help
   def self.show_help
     puts "Usage:"
     puts "    teuton-server [help|version] [PATH/TO/server.yaml [IP]]"
@@ -24,15 +27,20 @@ module TeutonServer
     exit 0
   end
 
+  # Show TeutonServer version
   def self.show_version
     puts "teuton-server => " + Rainbow("version #{Application::VERSION}").cyan
     exit 0
   end
 
-  def self.init(arg)
-    src = File.join(File.dirname(__FILE__), 'teuton-server', 'files',
-          Application::CONFIGFILE)
-    dest = File.join(Application::CONFIGFILE)
+  # Create default configuration file
+  # @param args [Array] List of arguments, where args[0]='init'
+  def self.init(args)
+    folder = '.'
+    folder = args[1] if args.size > 1
+    src = File.join(File.dirname(__FILE__),
+          'teuton-server', 'files', Application::CONFIGFILE)
+    dest = File.join(folder, Application::CONFIGFILE)
     if File.exists? dest
       puts "teuton-server => " + Rainbow("File \'#{dest}\' exists!").red
       exit 1
