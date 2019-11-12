@@ -18,8 +18,6 @@ But with TeutonServer, T-NODE host listen to evaluation requests from S-NODE hos
 1. `teuton-server init`, create default configuration server file.
 1. `teuton-server`, runs Teuton Server.
 
-> Now we can send requests to TeutonServer from S-NODE hosts, using [Teuton Client](https://github.com/dvarrui/teuton-client).
-
 ## Documentation
 
 * [Installation](docs/installation.md)
