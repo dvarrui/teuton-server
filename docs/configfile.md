@@ -25,13 +25,17 @@ Let's see its content:
 
 ## Config file params
 
-**server** section: Configuration param for Teuton Server.
+### server section
+
+Configuration param for Teuton Server.
 
 * **ip**: Server listening IP
 * **port**: Base port for services.
     * `:port: 16000`, client 1 is asigned port 16001, client 2 is assigned 16002 port, and so on.
 
-**client** section: Configuration param for every TeutonClient. TeutonServer will attend only the specified clients.
+### client section
+
+Configuration param for every TeutonClient. TeutonServer will attend only the specified clients.
 
 * **members**: Client name or names
 * **ip**: Server only accepts client request from this IP.

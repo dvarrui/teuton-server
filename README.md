@@ -9,14 +9,14 @@ But with TeutonServer, T-NODE host listen to evaluation requests from S-NODE hos
 
 ## Installation
 
-* Then `gem install teuton-server`, to install TeutonServer.
+* `gem install teuton-server`, to install TeutonServer.
 
 > Ensure [Teuton Software](https://github.com/teuton-software/teuton) is installed too.
 
 ## Running
 
-1. `teuton-server init`, create Teuton Server configuration file on T-NODE host. Personalize `teuton-server.yaml` configurations (server IP, testunits names, clients IP, etc).
-1. `teuton-server` runs Teuton Server into T-NODE host.
+1. `teuton-server init`, create default configuration server file.
+1. `teuton-server`, runs Teuton Server.
 
 > Now we can send requests to TeutonServer from S-NODE hosts, using [Teuton Client](https://github.com/dvarrui/teuton-client).
 
