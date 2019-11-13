@@ -3,9 +3,13 @@ require_relative 'lib/teuton-server/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2019-11-09'
-  s.summary     = "TeutonServer (Teuton Software)"
-  s.description = "TeutonServer listens and responds TeutonClients request"
+  s.date        = '2019-11-13'
+  s.summary     = "TeutonServer (Teuton Software project)"
+  s.description = <<-EOF
+  TeutonServer listen requests from TeutonClients.
+  Responds executing Teuton evaluation for that client.
+  EOF
+
   s.extra_rdoc_files = [ 'README.md',
                          'docs/configfile.md',
                          'docs/installation.md',
