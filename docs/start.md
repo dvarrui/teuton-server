@@ -1,15 +1,20 @@
-[<<back](../README.md)
 
-# Starting TeutonServer
+# Starting teutonServer
 
 Resume:
 
-| Command       | Configfile        | Location                      |
-| ------------- | ----------------- | ----------------------------- |
-| teuton-server | teuton-sever.yaml | Config into current directory |
-| teuton-server foo | teuton-server.yaml | Config into foo directory |
-| teuton-server foo/config.yaml | config.yaml | Config into foo directory |
-| teuton-server foo/config.yaml X.X.X.X | config.yaml | Config into foo directory and server liste IP=X.X.X.X |
+* Default config file into current directory
+    * Command: `teuton-server`
+    * Configfile: `teuton-sever.yaml`
+* Default config file into `foo` directory:
+    * Command: `teuton-server foo`
+    * Configfile: `teuton-server.yaml`
+* Config file into `foo` directory:
+    * Command: `teuton-server foo/config.yaml`
+    * Configfile: `foo/config.yaml`
+* Config file into `foo` directory and force server listening IP to X.X.X.X.
+    * Command: `teuton-server foo/config.yaml X.X.X.X`
+    * Configfile: `foo/config.yaml`
 
 ## Default config file
 
@@ -57,7 +62,7 @@ teuton-server => Starting...
 teuton-server => service [1] listening on '16001'...
 ```
 
-## Change listen IP on fly
+## Force listening IP on fly
 
 TeutonServer reads params from config file, but it's posible to overwrite listen IP server on fly.
 

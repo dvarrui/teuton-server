@@ -17,12 +17,8 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/dvarrui/teuton-server'
 
   s.executables << 'teuton-server'
-  s.files       = %w[lib/teuton-server/files/teuton-server.yaml
-                   lib/teuton-server/application.rb
-                   lib/teuton-server/input_loader.rb
-                   lib/teuton-server/service_manager.rb
-                   lib/teuton-server/service.rb
-                   lib/teuton-server.rb]
+  s.files       = Dir.glob(File.join('lib','**','*.rb')) +
+                  Dir.glob(File.join('docs','**','*.md'))
 
   s.add_runtime_dependency 'rainbow', '~> 3.0'
   s.add_development_dependency 'minitest', '~> 5.11'
