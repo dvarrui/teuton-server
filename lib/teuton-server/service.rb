@@ -25,7 +25,10 @@ class Service
   end
 
   def authorized_request?(client, param)
-    return true if param[:client][:ip] == :allow
+    if param[:client][:ip] == :allow
+      param[:client][:ip] = client.peeraddr[2]
+      return true
+    end
     return false if param[:client][:ip] == :deny
     return param[:client][:ip] == client.peeraddr[2]
   end
@@ -58,6 +61,7 @@ class Service
     ok = system(command)
     action = {}
     action[:timestamp] = Time.now
+    action[:testname] = testname
     action[:cmd] = command
     action[:grade] = Rainbow('FAIL!').red
     action[:grade] = get_grade_from_report(param, testindex) if ok
@@ -92,7 +96,7 @@ class Service
     puts output
     client.puts("Connection : #{src} -> #{dest} ")
     client.puts("Timestamp  : #{action[:timestamp]}")
-    client.puts("Action     : #{action[:cmd]}")
+    client.puts("Test Name  : #{action[:testname]}")
     client.puts("Grade      : #{action[:grade]}")
     client.close
   end
