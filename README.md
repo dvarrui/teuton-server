@@ -11,7 +11,7 @@ But with TeutonServer, T-NODE host listen to evaluation requests from S-NODE hos
 
 * `gem install teuton-server`, to install TeutonServer.
 
-> Ensure [Teuton Software](https://github.com/teuton-software/teuton) is installed too.
+> Ensure [Teuton Software (version => 2.1)](https://github.com/teuton-software/teuton) is installed too.
 
 ## Running
 
