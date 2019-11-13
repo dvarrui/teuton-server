@@ -46,17 +46,17 @@ module TeutonServer
   end
 
   # Create default configuration file. Arguments:
-  # * "init" => Create default config file (teuton-server.yaml)
-  # * "init DIR" => Create DIR/teuton-server.yaml config file.
-  # * "init FILE.yaml => Create FILE.yaml config file.
+  # * "" => Create default config file (teuton-server.yaml)
+  # * "DIR" => Create DIR/teuton-server.yaml config file.
+  # * "FILE.yaml" => Create FILE.yaml config file.
   # @param args [Array] List of arguments, where args.first = 'init'
   def self.init(args)
     src = File.join(File.dirname(__FILE__),
           'teuton-server', 'files', Application::CONFIGFILE)
     dest = File.join(Application::CONFIGFILE)
 
-    if args.size > 1
-      file = args[1]
+    if args.size > 0
+      file = args.first
       dest = File.join(file) if File.extname(file) == '.yaml'
       dest = File.join(file, Application::CONFIGFILE) if File.directory? file
     end
