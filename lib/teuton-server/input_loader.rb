@@ -3,10 +3,10 @@ require_relative 'application'
 
 # This module reads input configuration
 module InputLoader
-  # Read input configuration
+  # Read configuration
   # @param args [Array] List of arguments
   # @return [Hash]
-  def self.read_input_args(args)
+  def self.read_configuration(args)
     input = (args.size.zero? ? [Application::CONFIGFILE] : args)
     param = {}
     param = read_yaml(input[0])

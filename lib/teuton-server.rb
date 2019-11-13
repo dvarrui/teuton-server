@@ -8,7 +8,7 @@ module TeutonServer
   # Start TeutonServer
   # @param args [Array] List of arguments
   def self.start(args)
-    param = InputLoader.read_input_args(args)
+    param = InputLoader.read_configuration(args)
     ServiceManager.start_services(param)
   end
 
@@ -49,7 +49,7 @@ module TeutonServer
     puts "teuton-server => " + Rainbow("Init \'#{dest}\' done!").yellow
     exit 0
     # TODO:
-    # Add testunits list by default 
+    # Add testunits list by default
     # a = Dir.glob(File.join('projects/gnulinux-basic/**','start.rb'))
   end
 end
