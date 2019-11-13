@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.define "teuton-server" do |i|
-    i.vm.box = "generic/opensuse15"
+    i.vm.box = "generic/debian9"
     i.vm.hostname = "teuton-server"
     i.vm.network "public_network", bridge: [
       "wlp1s0",
