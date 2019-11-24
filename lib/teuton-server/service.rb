@@ -1,6 +1,11 @@
 require 'socket'
 
+##
+# This class wake up service to respond request from 1 client.
 class Service
+  ##
+  # Run 1 service to respond request from 1 client.
+  # @param param [Hash] Service params
   def run(param)
     service = TCPServer.open(param[:server][:port])
     accept_clients service, param

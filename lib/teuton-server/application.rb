@@ -1,7 +1,8 @@
+##
 # This module groups some global configuration params.
 module Application
-  NAME = 'teuton-server'
-  VERSION = '0.0.7'
-  CONFIGFILE = 'teuton-server.yaml'
-  PORT = 16000
+  NAME = 'teuton-server'            # Application name
+  VERSION = '0.0.8'                 # Application version
+  CONFIGFILE = 'teuton-server.yaml' # Default config file name
+  PORT = 16000                      # Default base port
 end
