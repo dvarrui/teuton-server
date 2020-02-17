@@ -3,14 +3,14 @@ require_relative 'lib/teuton-server/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2019-11-24'
+  s.date        = '2020-02-17'
   s.summary     = "TeutonServer (Teuton Software project)"
   s.description = <<-EOF
   TeutonServer listen requests from TeutonClients.
   Responds executing Teuton evaluation for that client.
   EOF
 
-  s.extra_rdoc_files = [ 'README.md'] +
+  s.extra_rdoc_files = [ 'README.md', 'LICENSE' ] +
                        Dir.glob(File.join('docs','**','*.md'))
 
   s.license     = 'GPL-3.0'
@@ -19,10 +19,11 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/dvarrui/teuton-server'
 
   s.executables << 'teuton-server'
-  s.files       = Dir.glob(File.join('lib','**','*.rb'))
+  s.files       = Dir.glob(File.join('lib','**','*.rb')) +
+                  Dir.glob(File.join('lib','teuton-server','files','*'))
 
   s.add_runtime_dependency 'rainbow', '~> 3.0'
-  s.add_runtime_dependency 'teuton', '>= 2.1.1'
-  
+  s.add_runtime_dependency 'teuton', '~> 2.1', '>= 2.1.3'
+
   s.add_development_dependency 'minitest', '~> 5.11'
 end

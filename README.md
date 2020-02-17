@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/teuton-server.svg)](https://badge.fury.io/rb/teuton-server)
 
 # Teuton Server
 
