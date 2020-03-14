@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'tasks/build'
+
 gems = %w[rainbow minitest]
 
 desc 'Default: check'
@@ -16,21 +18,6 @@ end
 desc 'Rake help'
 task :help do
   system('rake -T')
-end
-
-desc 'Build gem'
-task :build do
-  puts "[ INFO ] Building gem..."
-  system('rm teuton-server-*.*.*.gem')
-  system('gem build teuton-server.gemspec')
-end 
-
-desc 'Generate docs'
-task :docs do
-  puts "[ INFO ] Generating documentation..."
-  system('rm -r html/')
-  system('yardoc lib/* -o html ' +
-         '--files docs/installation.md,docs/start.md,docs/configfile.md')
 end
 
 desc 'Gems installation'
