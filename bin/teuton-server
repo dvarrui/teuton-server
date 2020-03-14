@@ -1,13 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'teuton-server'
+require 'teuton-server/cli'
 
-# TeutonServer has these main actions:
-# * help    => show_help
-# * version => show_version
-# * init    => init or create server config file
-# * start   => Start Teuton Server
-TeutonServer.show_help if ARGV.first == 'help'
-TeutonServer.show_version if ARGV.first == 'version'
-TeutonServer.init(ARGV.slice(1,ARGV.size)) if ARGV.first == 'init'
-TeutonServer.start(ARGV)
+CLI.start(ARGV)
