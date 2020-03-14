@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 namespace :build do
+  desc 'Build all (gem and docs)'
+  task :all do
+    Rake::Task['build:gem'].invoke
+    Rake::Task['build:docs'].invoke
+  end
+
   desc 'Build gem'
   task :gem do
     puts "[ INFO ] Building gem..."
